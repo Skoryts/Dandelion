@@ -4,7 +4,7 @@
 
 var Pharm = require("./models/pharm");
 
-module.exports = function (app) {
+module.exports = function (app, path) {
   app.get("/api/pharms", function (req, res) {
     Pharm.find(function (err, pharms) {
       if (err) res.send(err);
@@ -40,7 +40,7 @@ module.exports = function (app) {
     })
   });
 
-  app.get("*", function (req, res) {
-    res.sendFile("./public/index.html");
+  app.get("/dashboard", function (req, res) {
+    res.sendFile(path + "/public/dashboard.html");
   });
 };

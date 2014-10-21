@@ -11,13 +11,16 @@ var methodOverride = require("method-override");
 var db = require("./config/db");
 mongoose.connect(db.url);
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
 app.use(express.static(__dirname + "/public"));
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({"extended":"true"}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type: "application/vnd.api+json"}));
 
-require("./app/routes")(app);
+require("./app/routes")(app, __dirname);
 
 app.listen(3000);
 console.log("App listening on port 3000");
