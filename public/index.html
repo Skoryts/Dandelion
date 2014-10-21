@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="Dandelion">
+<head>
+  <meta charset="UTF-8">
+  <title>Dandelion</title>
+  <link rel="stylesheet" href="./stylesheets/common.css"/>
+  <script src="./js/libs/jquery.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/libs/angular.js"></script>
+  <script src="./js/controllers/main.js"></script>
+  <script src="./js/services/pharms.js"></script>
+  <script src="./js/core.js"></script>
+</head>
+<body ng-controller="mainController">
+  <div class="layout">
+    <header class="header">
+      <a class="logo" href="/" title="Dandelion"></a>
+    </header>
+    <main class="content">
+      {{4+4}}
+      <!--Search form-->
+      <!--<form class="horizontal-form m-l-70">-->
+        <!--<div class="form-el">-->
+          <!--<select name="city">-->
+            <!--<option value="Львів">Львів</option>-->
+          <!--</select>-->
+        <!--</div>-->
+        <!--<div class="form-el">-->
+          <!--<select name="district">-->
+            <!--<option value="Галицький">Галицький</option>-->
+            <!--<option value="Франківський">Франківський</option>-->
+            <!--<option value="Шевченківський">Шевченківський</option>-->
+          <!--</select>-->
+        <!--</div>-->
+        <!--<div class="form-el">-->
+          <!--<label for="time">-->
+            <!--<input type="checkbox" id="time" name="time"/>-->
+            <!--Цілодобово-->
+          <!--</label>-->
+        <!--</div>-->
+        <!--<div class="form-el">-->
+          <!--<button type="submit" class="btn">Пошук</button>-->
+        <!--</div>-->
+      <!--</form>-->
+      <form class="horizontal-form m-l-70">
+        <div class="form-el">
+          <input type="text" placeholder="Назва аптеки" ng-model="formData.name"/>
+        </div>
+        <div class="form-el">
+          <button type="submit" class="btn" ng-click="createPharm()">Добавити</button>
+        </div>
+      </form>
+      <div>Аптек знайдено: {{ pharms.length }}</div>
+      <table class="pharmacy-table">
+        <thead>
+          <tr>
+            <th>Назва</th>
+            <th>Дії</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="pharm in pharms">
+            <td>{{ pharm.name }}</td>
+            <td>
+              <button class="btn" ng-click="deletePharm(pharm._id)">Видалити</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </main>
+  </div>
+  <footer class="footer"></footer>
+</body>
+</html>

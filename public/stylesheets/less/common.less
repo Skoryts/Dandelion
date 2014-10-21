@@ -1,0 +1,118 @@
+@import "fonts.less";
+@import "basic.less";
+@import "mixins.less";
+
+
+.header{
+  .logo{
+    display: block;
+    height: 100%;
+    width: 320px;
+    .ma;
+    background: url("../img/logo.svg") center no-repeat;
+  }
+}
+
+.pharmacy-table{
+	width: 100%;
+	border-collapse: collapse;
+	.m-t-20;
+	text-align: center;
+	thead{
+		background: #f6f6f6;
+	}
+  th{
+    font-weight: normal;
+    text-transform: uppercase;
+
+  }
+	td, th{
+    width: 25%;
+    padding: 15px 15px 15px 70px;
+    border-bottom: 1px solid #e9e9e9;
+    text-align: left;
+	}
+}
+
+.form-el input[type="text"]{
+  width: auto;
+  min-width: 70px;
+  height: 38px;
+  border: 1px solid #c2c2c2;
+  border-radius: 10px;
+  padding: 0px 40px 0 24px;
+  line-height: 37px;
+}
+
+.select-styled{
+  position: relative;
+  width: auto;
+  min-width: 70px;
+  height: 38px;
+  border: 1px solid #c2c2c2;
+  border-radius: 10px;
+  cursor: pointer;
+
+  .selectedEl{
+    display: block;
+    width: auto;
+    height: 100%;
+    padding: 0px 40px 0 24px;
+    line-height: 37px;
+    &:after{
+      content: "";
+      display: block;
+      width: 17px;
+      height: 10px;
+      background: url("../img/select-arrow.png") center no-repeat;
+      position: absolute;
+      right: 15px;
+      top: 13px;
+    }
+  }
+  ul{
+    width: auto;
+    list-style: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 1;
+    border: 1px solid #ececec;
+    box-shadow: 1px 1px 1px #eee,
+                -1px -1px 1px #eee;
+    li{
+      display: block;
+      height: 52px;
+      min-width: 70px;
+      background: #fff;
+      padding: 0 16px;
+      border-bottom: 1px solid #ececec;
+      line-height: 52px;
+      &:last-child{
+        border: none;
+      }
+      &:hover{
+        background: #f6f6f6;
+      }
+    }
+  }
+}
+
+.chk-styled{
+  label{
+    cursor: pointer;
+    &:before{
+      content: "";
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      position: relative;
+      top: 3px;
+      border: 1px solid #c2c2c2;
+      .m-r-10;
+    }
+    &.on:before{
+      background: url("../img/chk-arrow.png") center no-repeat;
+    }
+  }
+}

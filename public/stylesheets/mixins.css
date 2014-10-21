@@ -1,0 +1,39 @@
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+.ma {
+  margin: 0 auto;
+}
+.m-t-20 {
+  margin-top: 20px;
+}
+.m-r-10 {
+  margin-right: 10px;
+}
+.m-l-70 {
+  margin-left: 70px;
+}
+.hidden {
+  display: none;
+}
+.horizontal-form .form-el {
+  display: inline-block;
+  width: auto;
+  margin-right: 20px;
+}
+.btn {
+  height: 38px;
+  border: 1px solid #c2c2c2;
+  background: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0 10px;
+}
+.btn:hover {
+  background: #f6f6f6;
+}
