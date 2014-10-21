@@ -2,7 +2,7 @@
  * Created by Stanislav on 19.10.2014.
  */
 
-angular.module("pharmController")
+angular.module("pharmController", [])
   .controller("mainController", function ($scope, $http, Pharms) {
       $scope.formData = {};
 
