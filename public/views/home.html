@@ -1,0 +1,25 @@
+<form class="horizontal-form m-l-70">
+  <div class="form-el">
+    <input type="text" placeholder="Назва аптеки" ng-model="formData.name"/>
+  </div>
+  <div class="form-el">
+    <button type="submit" class="btn" ng-click="createPharm()">Добавити</button>
+  </div>
+</form>
+<div>Аптек знайдено: {{ pharms.length }}</div>
+<table class="pharmacy-table">
+  <thead>
+  <tr>
+    <th>Назва</th>
+    <th>Дії</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="pharm in pharms">
+    <td>{{ pharm.name }}</td>
+    <td>
+      <button class="btn" ng-click="deletePharm(pharm._id)">Видалити</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

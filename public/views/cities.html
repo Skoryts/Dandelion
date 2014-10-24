@@ -1,0 +1,28 @@
+<form class="horizontal-form m-l-70">
+  <div class="form-el">
+    <input type="text" placeholder="Назва міста" ng-model="formData.name"/>
+    <input type="text" placeholder="Назва міста латиницею" ng-model="formData.value"/>
+  </div>
+  <div class="form-el">
+    <button type="submit" class="btn" ng-click="createCity()">Добавити</button>
+  </div>
+</form>
+<div class="m-l-70">Міст знайдено: {{ cities.length }}</div>
+<table class="pharmacy-table">
+  <thead>
+  <tr>
+    <th>Назва</th>
+    <th>Латиниця</th>
+    <th>Дії</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="city in cities">
+    <td>{{ city.name }}</td>
+    <td>{{ city.value }}</td>
+    <td>
+      <button class="btn" ng-click="deleteCity(city._id)">Видалити</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

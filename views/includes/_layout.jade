@@ -1,0 +1,18 @@
+//
+   Created by skorytskyy on 10/24/2014.
+
+doctype html
+html()
+  head
+    meta(charset="UTF-8")
+    title= title
+    link(rel='stylesheet', href='/stylesheets/common.css')
+    script(src="/js/libs/jquery.js")
+    script(src="/js/common.js")
+  body
+    .layout
+      block header
+        include _header
+      block content
+    block footer
+      include _footer.jade

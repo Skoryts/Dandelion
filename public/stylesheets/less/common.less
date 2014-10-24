@@ -4,6 +4,7 @@
 
 .header{
   .logo{
+    .p-t-75;
     display: block;
     height: 100%;
     width: 320px;
@@ -112,6 +113,26 @@
     }
     &.on:before{
       background: url("../img/chk-arrow.png") center no-repeat;
+    }
+  }
+}
+
+#nav{
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  text-align: left;
+  background: #f6f6f6;
+  border-bottom: 1px solid #e9e9e9;
+  ul{
+    .m-l-70;
+    li{
+      display: inline-block;
+      margin-right: 10px;
+      a{
+        display: block;
+        line-height: 50px;
+      }
     }
   }
 }
