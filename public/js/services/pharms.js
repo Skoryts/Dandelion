@@ -16,16 +16,19 @@ angular.module("pharmService", [])
       }
     }
   })
-  .factory("Cities", function ($http) {
+  .factory("Locations", function ($http) {
     return {
-      get: function () {
-        return $http.get("/api/cities");
+      search: function (data) {
+        return $http.post("/api/locations/streets", data)
       },
-      create: function (cityData) {
-        return $http.post("/api/cities", cityData);
+      get: function () {
+        return $http.get("/api/locations");
+      },
+      create: function (data) {
+        return $http.post("/api/locations", data);
       },
       delete: function (id) {
-        return $http.delete("/api/cities/" + id);
+        return $http.delete("/api/locations/" + id);
       }
     }
   });

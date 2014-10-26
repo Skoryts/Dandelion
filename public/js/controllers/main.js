@@ -33,38 +33,40 @@ angular.module("pharmController", [])
       }
   })
 
-  .controller("citiesController", function($scope, $http, Cities){
-    $scope.formData = {};
+  .controller("locationsController", function($scope, $http, Locations){
+      $scope.formData = {};
+      $scope.searchData = {
+        district: "sch"
+      };
 
-    Cities.get()
+      $scope.getStreets = function () {
+        Locations.search($scope.searchData)
+            .success(function (data) {
+              $scope.streets = data;
+            })
+      };
+
+    Locations.get()
       .success(function (data) {
-        $scope.cities = data;
+          $scope.cities = data[0];
       });
-
-    $scope.createCity = function () {
-
-      if (!$.isEmptyObject($scope.formData)){
-        Cities.create($scope.formData)
-          .success(function (data) {
-            $scope.formData = {};
-            $scope.cities = data;
-          })
-      }
-    };
-
-    $scope.deleteCity = function (id) {
-
-      Cities.delete(id)
-        .success(function (data) {
-          $scope.cities = data;
-        });
-    }
-  })
-
-  .controller("districtsController", function($scope, $http, Pharms){
-
-  })
-
-  .controller("streetsController", function($scope, $http, Pharms){
-
+//
+//    $scope.createCity = function () {
+//
+//      if (!$.isEmptyObject($scope.formData)){
+//        Cities.create($scope.formData)
+//          .success(function (data) {
+//            $scope.formData = {};
+//            $scope.cities = data;
+//          })
+//      }
+//    };
+//
+//    $scope.deleteCity = function (id) {
+//
+//      Cities.delete(id)
+//        .success(function (data) {
+//          $scope.cities = data;
+//        });
+//    }
   });

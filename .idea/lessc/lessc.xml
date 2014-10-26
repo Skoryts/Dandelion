@@ -10,12 +10,12 @@
               <option name="cssDirectories">
                 <list>
                   <CssDirectory>
-                    <option name="path" value="C:\StanislavKorytskyy\Dandelion\public\stylesheets" />
+                    <option name="path" value="E:\Робота\Dandelion\public\stylesheets" />
                   </CssDirectory>
                 </list>
               </option>
               <option name="id" value="1" />
-              <option name="lessDirPath" value="C:\StanislavKorytskyy\Dandelion\public\stylesheets\less" />
+              <option name="lessDirPath" value="E:\Робота\Dandelion\public\stylesheets\less" />
               <option name="name" value="main" />
             </LessProfile>
           </value>

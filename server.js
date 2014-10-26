@@ -19,8 +19,9 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({"extended":"true"}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type: "application/vnd.api+json"}));
+app.use(methodOverride());
 
-require("./app/routes")(app, __dirname);
+require("./app/routes/mains")(app, __dirname);
 
 app.listen(3000);
 console.log("App listening on port 3000");

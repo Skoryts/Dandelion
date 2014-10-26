@@ -1,0 +1,31 @@
+<form class="horizontal-form m-l-70">
+  <div class="form-el">
+    <select name="city">
+      <option value="lviv">Львів</option>
+    </select>
+  </div>
+  <div class="form-el">
+    <select name="district" ng-model="searchData.district">
+      <option ng-repeat="district in cities.districts" value="{{district.value}}">{{district.name}}</option>
+    </select>
+  </div>
+  <div class="form-el">
+    <button type="submit" class="btn" ng-click="getStreets()">Добавити</button>
+  </div>
+</form>
+<form>
+
+</form>
+<div class="m-l-70">Вулиць знайдено: {{ streets.length }}</div>
+<table class="pharmacy-table">
+  <thead>
+  <tr>
+    <th>Назва</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="street in streets">
+    <td>{{ street.name }}</td>
+  </tr>
+  </tbody>
+</table>

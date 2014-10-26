@@ -10,19 +10,9 @@ angular.module("Dandelion", ["ngRoute", "pharmController", "pharmService"])
         controller: "mainController"
       })
 
-      .when("/cities", {
-        templateUrl: "../views/cities.html",
-        controller: "citiesController"
-      })
-
-      .when("/districts", {
-        templateUrl: "../views/districts.html",
-        controller: "districtsController"
-      })
-
-      .when("/streets", {
-        templateUrl: "../views/streets.html",
-        controller: "streetsController"
+      .when("/locations", {
+        templateUrl: "../views/locations.html",
+        controller: "locationsController"
       });
 
       $locationProvider.html5Mode(true);
