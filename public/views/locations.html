@@ -1,22 +1,24 @@
-<form class="horizontal-form m-l-70">
+<form class="horizontal-form m-l-70" enctype="text/plain">
   <div class="form-el">
-    <select name="city">
-      <option value="lviv">Львів</option>
+    <select name="city" ng-model="formData.city">
+      <option ng-repeat="city in cities" value="{{city.name}}">{{city.name}}</option>
     </select>
   </div>
   <div class="form-el">
-    <select name="district" ng-model="searchData.district">
-      <option ng-repeat="district in cities.districts" value="{{district.value}}">{{district.name}}</option>
+    <select name="district" ng-model="formData.district" ng-change="getStreets()">
+      <option ng-repeat="district in cities[0].districts" value="{{district}}">{{district}}</option>
     </select>
   </div>
+</form>
+<form class="horizontal-form m-l-70" enctype="text/plain">
   <div class="form-el">
-    <button type="submit" class="btn" ng-click="getStreets()">Добавити</button>
+    <input type="text" name="street" placeholder="Введіть назву вулиці" ng-model="formData.street"/>
+  </div>
+  <div class="form-el">
+    <button type="submit" class="btn" ng-click="addStreet()">Добавити</button>
   </div>
 </form>
-<form>
-
-</form>
-<div class="m-l-70">Вулиць знайдено: {{ streets.length }}</div>
+<div class="m-l-70">Вулиць знайдено: {{ streets.length || 0 }}</div>
 <table class="pharmacy-table">
   <thead>
   <tr>

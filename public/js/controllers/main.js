@@ -35,32 +35,28 @@ angular.module("pharmController", [])
 
   .controller("locationsController", function($scope, $http, Locations){
       $scope.formData = {};
-      $scope.searchData = {
-        district: "sch"
-      };
-
-      $scope.getStreets = function () {
-        Locations.search($scope.searchData)
-            .success(function (data) {
-              $scope.streets = data;
-            })
-      };
-
     Locations.get()
       .success(function (data) {
-          $scope.cities = data[0];
+          $scope.cities = data;
+          $scope.formData.city = data[0].name;
+          $scope.formData.district = data[0].districts[0];
       });
-//
-//    $scope.createCity = function () {
-//
-//      if (!$.isEmptyObject($scope.formData)){
-//        Cities.create($scope.formData)
-//          .success(function (data) {
-//            $scope.formData = {};
-//            $scope.cities = data;
-//          })
-//      }
-//    };
+
+    $scope.getStreets = function () {
+      Locations.getStreets($scope.formData).success(function (data) {
+          $scope.streets = data;
+      })
+    };
+    $scope.addStreet = function () {
+
+      if (!$.isEmptyObject($scope.formData.street)){
+        Locations.create($scope.formData)
+          .success(function (data) {
+            $scope.formData.street = "";
+            $scope.streets = data;
+          })
+      }
+    };
 //
 //    $scope.deleteCity = function (id) {
 //

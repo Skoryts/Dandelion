@@ -18,14 +18,14 @@ angular.module("pharmService", [])
   })
   .factory("Locations", function ($http) {
     return {
-      search: function (data) {
-        return $http.post("/api/locations/streets", data)
+      getStreets: function (data) {
+        return $http.post("/api/streets", data);
       },
       get: function () {
-        return $http.get("/api/locations");
+        return $http.get("/api/cities");
       },
       create: function (data) {
-        return $http.post("/api/locations", data);
+        return $http.post("/api/addstreet", data);
       },
       delete: function (id) {
         return $http.delete("/api/locations/" + id);

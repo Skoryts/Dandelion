@@ -2,54 +2,51 @@
  * Created by Stanislav on 25.10.2014.
  */
 
-var Location = require("./../../models/location");
+var City = require("./../../models/city");
+var Street = require("./../../models/street");
 
 module.exports = function (app) {
 
   // Locations
-  app.get("/api/locations", function (req, res) {
-    Location.find(function (err, locations) {
+  app.get("/api/cities", function (req, res) {
+    City.find(function (err, cities) {
       if (err) res.send(err);
 
-      res.json(locations);
+      res.json(cities);
     })
   });
 
-  app.post("/api/locations/streets", function (req, res) {
-    Location.find(function (err, city) {
+  app.post("/api/streets", function (req, res) {
+    console.log(req.body);
+    Street.find({
+      locations: { $elemMatch: { city: req.body.city, districts: req.body.district } }
+    }, function (err, streets) {
       if (err) res.send(err);
-      for (i = 0; i < city[0].districts.length; i++){
-        if (city[0].districts[i].value == req.body.district)
-          var streets = city[0].districts[i].streets;
-      }
+
       res.json(streets);
     })
   });
 
-  app.post("/api/locations", function (req, res) {
-    Location.create({
-      name: req.body.name,
-      value: req.body.value
-    }, function (err) {
-      if (err) res.send(err);
+  app.post("/api/addstreet", function (req, res) {
 
-      Location.find(function (err, locations) {
-        if (err) res.send(err);
-        res.json(locations);
-      })
-    })
-  });
-
-  app.delete("/api/locations/:id", function (req, res) {
-    Location.remove({
-      _id: req.params.id
-    }, function (err) {
-      if (err) res.send(err);
-
-      Location.find(function (err, locations) {
-        if (err) res.send(err);
-        res.json(locations);
-      })
-    })
+    Street.update(
+      {
+        name: req.body.street
+      },
+      {
+        $addToSet: {locations: { city: req.body.city, districts: req.body.district}}
+      },
+      {
+        "multi" : false,  // update only one document
+        "upsert" : true  // insert a new document, if no existing document match the query
+      }, function (err) {
+          if (err) res.send(err);
+          Street.find({
+            locations: { $elemMatch: { city: req.body.city, districts: req.body.district } }
+          }, function (err, streets) {
+            if (err) res.send(err);
+            res.json(streets);
+          })
+      });
   });
 };
