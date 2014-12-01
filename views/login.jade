@@ -1,0 +1,13 @@
+//
+   Created by Stanislav on 01.12.2014.
+
+extends ./includes/_layout
+block content
+   main(class="content")
+      form(method="POST")
+         .form-el
+            input(type="text", placeholder="Login", name="login")
+         .form-el
+            input(type="text", placeholder="Password", name="password")
+         .form-el
+            button(type="submit", class="btn") Login

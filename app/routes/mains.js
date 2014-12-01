@@ -5,7 +5,7 @@
 var Pharm = require("../models/pharm");
 var City = require("../models/city");
 
-module.exports = function (app, path) {
+module.exports = function (app, path, passport) {
 
   app.get("/", function(req, res){
 
@@ -30,11 +30,34 @@ module.exports = function (app, path) {
     });
   });
 
-  app.get("/dashboard/*", function (req, res) {
+  app.get("/dashboard/*", isLoggedIn, function (req, res) {
     res.sendFile(path + "/public/dashboard.html");
   });
 
+  app.get("/login", function (req, res) {
+    res.render("login");
+  });
+
+  app.post('/login', passport.authenticate('loginStrategy', {
+    successRedirect : '/dashboard/',
+    failureRedirect : '/login'
+  }));
+
+  app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+  });
+
+  function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+      return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/login');
+  }
+
   require("./api/pharms")(app);
   require("./api/locations")(app);
-
 };
