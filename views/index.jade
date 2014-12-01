@@ -3,27 +3,36 @@
 extends ./includes/_layout
 block content
   main(class="content")
-    form.search-form.horizontal-form.m-l-70(enctype="text/plain")
+    form.search-form.horizontal-form.m-l-70.m-t-40(enctype="text/plain")
       .form-el
         select(name="city")
           option(value="Львів") Львів
       .form-el
         select(id="district", name="district")
-          option(value="Галицький") Галицький
-          option(value="Франківський") Франківський
-          option(value="Шевченківський") Шевченківський
+          each d in cities[0].districts
+              if (selectedDistrict === d)
+                option(value= d, selected="selected")= d
+              else
+                option(value= d)= d
       .form-el
-        label(for="time")
-        input(type="checkbox", id="time", name="time")
-        | Цілодобово
+        label(for="time") Цілодобово
+          input(type="checkbox", id="time", name="time")
       .form-el
         button(type="submit", class="btn") Пошук
-    table.pharmacy-table
-      thead
-        tr
-          th Назва
-      tbody
-        if (pharms.length > 0)
+    if (pharms.length > 0)
+      table.pharmacy-table
+        thead
+          tr
+            th Назва
+            th Адреса
+            th Графік роботи
+            th Контакти
+        tbody
           each p in pharms
             tr
               td= p.name
+              td= "вулиця " + p.address.street + " " + p.address.house
+              td= p.time.night ? "Цілодобово" : p.time.schedule
+              td= p.contacts
+    else
+      div= "Аптек не знайдено"

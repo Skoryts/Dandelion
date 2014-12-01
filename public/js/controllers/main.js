@@ -3,15 +3,24 @@
  */
 
 angular.module("pharmController", [])
-  .controller("mainController", function ($scope, $http, Pharms) {
+  .controller("mainController", function ($scope, $http, Pharms, Locations) {
       $scope.formData = {};
-
-      Pharms.get()
-          .success(function (data) {
+        Pharms.get().success(function(data){
             $scope.pharms = data;
+        });
+        Locations.get()
+          .success(function (data) {
+            $scope.cities = data;
+            $scope.formData.city = data[0].name;
+            $scope.formData.districts = data[0].districts[0];
           });
 
-
+        $scope.getStreets = function () {
+            Locations.getStreets($scope.formData).success(function (data) {
+                $scope.streets = data;
+                $scope.formData.street = data[0].name;
+            })
+        };
 
       $scope.createPharm = function () {
 

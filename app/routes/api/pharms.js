@@ -18,7 +18,17 @@ module.exports = function (app) {
   app.post("/api/pharms", function (req, res) {
     Pharm.create({
       name: req.body.name,
-      done: false
+      address: {
+        city: req.body.city,
+        district: req.body.district,
+        street: req.body.street,
+        house: req.body.house
+      },
+      time:{
+        night: req.body.night,
+        schedule: req.body.schedule
+      },
+      contacts: req.body.contacts
     }, function (err, pharm) {
       if (err) res.send(err);
 

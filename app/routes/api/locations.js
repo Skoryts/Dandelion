@@ -17,7 +17,6 @@ module.exports = function (app) {
   });
 
   app.post("/api/streets", function (req, res) {
-    console.log(req.body);
     Street.find({
       locations: { $elemMatch: { city: req.body.city, districts: req.body.district } }
     }, function (err, streets) {

@@ -1,22 +1,63 @@
-<form class="horizontal-form m-l-70">
+<form class="m-l-70">
   <div class="form-el">
     <input type="text" placeholder="Назва аптеки" ng-model="formData.name"/>
+  </div>
+  <div class="form-el">
+    <select name="city" ng-model="formData.city">
+      <option ng-repeat="city in cities" value="{{city.name}}">{{city.name}}</option>
+    </select>
+  </div>
+  <div class="form-el">
+    <select name="district" ng-model="formData.district" ng-change="getStreets()">
+      <option ng-repeat="district in cities[0].districts" value="{{district}}">{{district}}</option>
+    </select>
+  </div>
+  <div class="form-el">
+    <select name="street" ng-model="formData.street">
+      <option ng-repeat="street in streets" value="{{street.name}}">{{street.name}}</option>
+    </select>
+  </div>
+  <div class="form-el">
+    <input type="text" name="house" placeholder="Номер будинку" ng-model="formData.house"/>
+  </div>
+  <div class="form-el">
+    <label for="night">
+      <input type="checkbox" id="night" name="night" ng-model="formData.night"/>
+      Цілодобово
+    </label>
+  </div>
+  <div class="form-el" ng-hide="formData.night">
+    <input type="text" placeholder="Графік роботи" ng-model="formData.schedule"/>
+  </div>
+  <div class="form-el">
+    <input type="text" placeholder="Контактний телефон" ng-model="formData.contacts"/>
   </div>
   <div class="form-el">
     <button type="submit" class="btn" ng-click="createPharm()">Добавити</button>
   </div>
 </form>
-<div>Аптек знайдено: {{ pharms.length }}</div>
+<div class="m-l-70">Аптек знайдено: {{ pharms.length }}</div>
 <table class="pharmacy-table">
   <thead>
   <tr>
     <th>Назва</th>
+    <th>Адреса</th>
+    <th>Графік роботи</th>
+    <th>Контакти</th>
     <th>Дії</th>
   </tr>
   </thead>
   <tbody>
   <tr ng-repeat="pharm in pharms">
     <td>{{ pharm.name }}</td>
+    <td>
+      <div>{{ pharm.address.city }}</div>
+      <div>{{ pharm.address.district }}</div>
+      <div>{{ pharm.address.street }}</div>
+      <div>{{ pharm.address.house }}</div>
+    </td>
+    <td>{{ pharm.time.night ? "Цілодобово" : pharm.time.schedule }}</td>
+    <td>{{ pharm.contacts }}</td>
     <td>
       <button class="btn" ng-click="deletePharm(pharm._id)">Видалити</button>
     </td>
